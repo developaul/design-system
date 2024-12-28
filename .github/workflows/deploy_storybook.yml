@@ -43,15 +43,15 @@ jobs:
       - name: Deploy Storybook documentation
         run: |
           cd doc-repo
-          find . -maxdepth 1 ! -name '.git' ! -name '.' -exec rm -rf {} +
+          find . -maxdepth 1 ! -name '.git' ! -name 'README.md' ! -name '.' -exec rm -rf {} +
           
           cp -r ../apps/docs/storybook-static/* .
           
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name developaul
+          git config user.email paulchavezromero20@gmail.com
           
           git add .
-          git commit -m "docs: actualización de Storybook desde monorepo
+          git commit -m "docs: Update Storybook from monorepo
 
           Commit origen: ${{ github.repository }}@${{ github.sha }}
           Ruta del Storybook: apps/docs
