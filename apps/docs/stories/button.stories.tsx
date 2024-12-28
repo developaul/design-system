@@ -94,3 +94,28 @@ export const Tertiary: Story = {
     },
   },
 };
+
+export const Large: Story = {
+  render: (props) => (
+    <Button
+      {...props}
+      onClick={(): void => {
+        // eslint-disable-next-line no-alert -- alert for demo
+        alert("Hello from Turborepo!");
+      }}
+    >
+      Hello Large
+    </Button>
+  ),
+  name: "Button/Large",
+  args: {
+    children: "Hello",
+    type: "button",
+    style: {
+      color: "black",
+      border: "1px solid gray",
+      padding: 20,
+      borderRadius: 10,
+    },
+  },
+};
