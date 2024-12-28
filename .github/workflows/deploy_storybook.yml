@@ -47,15 +47,21 @@ jobs:
           
           cp -r ../apps/docs/storybook-static/* .
           
-          git config user.name developaul
-          git config user.email paulchavezromero20@gmail.com
-          
-          git add .
-          git commit -m "docs: Update Storybook from monorepo
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
 
-          Commit origen: ${{ github.repository }}@${{ github.sha }}
-          Ruta del Storybook: apps/docs
-          Node version: 22
-          Package manager: pnpm@9.12.2"
+          git add .
+          git commit -m "docs: actualización de documentación de Storybook
+
+          Detalles de la actualización:
+          - Repositorio origen: ${{ github.repository }}
+          - Commit origen: ${{ github.sha }}
+          - Rama origen: ${{ github.ref_name }}
+          - Evento disparador: ${{ github.event_name }}
+
+          Detalles técnicos:
+          - Ruta del Storybook: apps/docs
+          - Node.js: v22
+          - Package manager: pnpm@9.12.2"
           
           git push origin main

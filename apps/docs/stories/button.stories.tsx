@@ -119,3 +119,28 @@ export const Large: Story = {
     },
   },
 };
+
+export const Small: Story = {
+  render: (props) => (
+    <Button
+      {...props}
+      onClick={(): void => {
+        // eslint-disable-next-line no-alert -- alert for demo
+        alert("Hello from Turborepo!");
+      }}
+    >
+      Hello Small
+    </Button>
+  ),
+  name: "Button/Small",
+  args: {
+    children: "Hello",
+    type: "button",
+    style: {
+      color: "black",
+      border: "1px solid gray",
+      padding: 5,
+      borderRadius: 10,
+    },
+  },
+};
