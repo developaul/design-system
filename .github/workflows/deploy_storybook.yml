@@ -36,7 +36,7 @@ jobs:
       - name: Checkout documentation repository
         uses: actions/checkout@v4
         with:
-          repository: pacifico-seguros-org/fe-pacifico-ui-doc
+          repository: developaul/design-system-doc
           token: ${{ secrets.GH_PACKAGES_TOKEN }}
           path: doc-repo
 
