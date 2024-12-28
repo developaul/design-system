@@ -1,0 +1,61 @@
+name: Deploy Storybook Documentation
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout monorepo
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '9.12.2'
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+          cache-dependency-path: './pnpm-lock.yaml'
+
+      - name: Install Storybook dependencies
+        working-directory: ./apps/docs
+        run: |
+          pnpm install --frozen-lockfile
+          
+      - name: Build Storybook
+        working-directory: ./apps/docs
+        run: pnpm run build
+
+      - name: Checkout documentation repository
+        uses: actions/checkout@v4
+        with:
+          repository: pacifico-seguros-org/fe-pacifico-ui-doc
+          token: ${{ secrets.GH_PACKAGES_TOKEN }}
+          path: doc-repo
+
+      - name: Deploy Storybook documentation
+        run: |
+          cd doc-repo
+          find . -maxdepth 1 ! -name '.git' ! -name '.' -exec rm -rf {} +
+          
+          cp -r ../apps/docs/storybook-static/* .
+          
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          
+          git add .
+          git commit -m "docs: actualización de Storybook desde monorepo
+
+          Commit origen: ${{ github.repository }}@${{ github.sha }}
+          Ruta del Storybook: apps/docs
+          Node version: 22
+          Package manager: pnpm@9.12.2"
+          
+          git push origin main

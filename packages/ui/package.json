@@ -6,8 +6,8 @@
   "exports": {
     "./button": {
       "types": "./src/button.tsx",
-      "import": "./dist/button.mjs",
-      "require": "./dist/button.js"
+      "import": "./src/button.tsx",
+      "require": "./src/button.tsx"
     }
   },
   "scripts": {

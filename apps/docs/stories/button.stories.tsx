@@ -29,15 +29,40 @@ export const Primary: Story = {
         alert("Hello from Turborepo!");
       }}
     >
-      Hello
+      Hello Primary
     </Button>
   ),
-  name: "Button",
+  name: "Button/Primary",
   args: {
     children: "Hello",
     type: "button",
     style: {
       color: "blue",
+      border: "1px solid gray",
+      padding: 10,
+      borderRadius: 10,
+    },
+  },
+};
+
+export const Secondary: Story = {
+  render: (props) => (
+    <Button
+      {...props}
+      onClick={(): void => {
+        // eslint-disable-next-line no-alert -- alert for demo
+        alert("Hello from Turborepo!");
+      }}
+    >
+      Hello Secondary
+    </Button>
+  ),
+  name: "Button/Secondary",
+  args: {
+    children: "Hello",
+    type: "button",
+    style: {
+      color: "red",
       border: "1px solid gray",
       padding: 10,
       borderRadius: 10,
