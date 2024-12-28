@@ -69,3 +69,28 @@ export const Secondary: Story = {
     },
   },
 };
+
+export const Tertiary: Story = {
+  render: (props) => (
+    <Button
+      {...props}
+      onClick={(): void => {
+        // eslint-disable-next-line no-alert -- alert for demo
+        alert("Hello from Turborepo!");
+      }}
+    >
+      Hello Tertiary
+    </Button>
+  ),
+  name: "Button/Tertiary",
+  args: {
+    children: "Hello",
+    type: "button",
+    style: {
+      color: "green",
+      border: "1px solid gray",
+      padding: 10,
+      borderRadius: 10,
+    },
+  },
+};
